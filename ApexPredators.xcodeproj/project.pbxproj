@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F7031ECC2CF04C8800B1E790 /* PredatorDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7031ECB2CF04C8800B1E790 /* PredatorDetail.swift */; };
 		F7E7D0C72CE608E50067082C /* ApexPredatorsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E7D0C62CE608E50067082C /* ApexPredatorsApp.swift */; };
 		F7E7D0C92CE608E50067082C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E7D0C82CE608E50067082C /* ContentView.swift */; };
 		F7E7D0CB2CE608E60067082C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7E7D0CA2CE608E60067082C /* Assets.xcassets */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F7031ECB2CF04C8800B1E790 /* PredatorDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredatorDetail.swift; sourceTree = "<group>"; };
 		F7E7D0C32CE608E50067082C /* ApexPredators.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ApexPredators.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7E7D0C62CE608E50067082C /* ApexPredatorsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApexPredatorsApp.swift; sourceTree = "<group>"; };
 		F7E7D0C82CE608E50067082C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 				F7E7D0D62CE60B910067082C /* ApexPredator.swift */,
 				F7E7D0D82CE60DE80067082C /* Predators.swift */,
 				F7E7D0C82CE608E50067082C /* ContentView.swift */,
+				F7031ECB2CF04C8800B1E790 /* PredatorDetail.swift */,
 				F7E7D0CA2CE608E60067082C /* Assets.xcassets */,
 				F7E7D0CC2CE608E60067082C /* Preview Content */,
 			);
@@ -149,6 +152,7 @@
 			files = (
 				F7E7D0D72CE60B910067082C /* ApexPredator.swift in Sources */,
 				F7E7D0C92CE608E50067082C /* ContentView.swift in Sources */,
+				F7031ECC2CF04C8800B1E790 /* PredatorDetail.swift in Sources */,
 				F7E7D0D92CE60DE80067082C /* Predators.swift in Sources */,
 				F7E7D0C72CE608E50067082C /* ApexPredatorsApp.swift in Sources */,
 			);

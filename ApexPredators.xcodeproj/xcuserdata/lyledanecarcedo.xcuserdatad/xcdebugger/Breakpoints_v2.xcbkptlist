@@ -14,10 +14,26 @@
             filePath = "ApexPredators/Predators.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "14"
-            endingLineNumber = "14"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
             landmarkName = "init()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "52151D51-2550-41C2-8CFC-4A6D219A23E1"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ApexPredators/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "body"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
