@@ -59,7 +59,7 @@ struct PredatorDetail: View {
                 }
                 
                 // Link
-                // TODO: Avoid this force unwrapping behavior. Follow the course then improve code quality once finish. Also add each link to each movie.
+                // TODO: Avoid this force unwrapping behavior. Follow the course then improve code quality once finish.
                 Text("Read More:")
                     .font(.caption)
                 Link (predator.link, destination: URL(string:predator.link)!)
