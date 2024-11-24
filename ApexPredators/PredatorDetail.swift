@@ -42,7 +42,10 @@ struct PredatorDetail: View {
                 // TODO: Handle current location later.
                 // Current Location
                 NavigationLink {
-                    
+                    PredatorMap(position: .camera(MapCamera(centerCoordinate: predator.location,
+                                                            distance: 1000,
+                                                            heading: 250,
+                                                            pitch: 80)))
                 } label: {
                     Map(position: $position) {
                         Annotation(predator.name, coordinate: predator.location) {
@@ -102,6 +105,7 @@ struct PredatorDetail: View {
                 Text("Read More:")
                     .font(.caption)
                 Link (predator.link, destination: URL(string:predator.link)!)
+                    .foregroundColor(.blue)
             }
             .padding()
             .frame(width:geo.size.width,alignment: .leading)
