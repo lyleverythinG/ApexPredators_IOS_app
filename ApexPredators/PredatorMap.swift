@@ -26,7 +26,7 @@ struct PredatorMap: View {
                 }
             }
         }
-        .mapStyle(satellite ?  .imagery(elevation: .realistic) : .standard( elevation: .realistic))
+        .mapStyle(satellite ? .imagery(elevation: .realistic) : .standard( elevation: .realistic))
         .overlay(alignment: .bottomTrailing) {
             Button {
                 satellite.toggle()
@@ -36,7 +36,6 @@ struct PredatorMap: View {
                     .imageScale(.large)
                     .background(.clear)
                     .padding()
-                
             }
         }
         .toolbarBackground(.automatic)

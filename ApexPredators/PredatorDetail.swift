@@ -39,7 +39,6 @@ struct PredatorDetail: View {
                 // Dino Name
                 Text(predator.name)
                     .font(.largeTitle)
-                // TODO: Handle current location later.
                 // Current Location
                 NavigationLink {
                     PredatorMap(position: .camera(MapCamera(centerCoordinate: predator.location,

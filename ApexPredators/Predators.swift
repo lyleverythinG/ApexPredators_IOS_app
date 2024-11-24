@@ -23,21 +23,14 @@ class Predators {
                 allApexPredators = try decoder.decode([ApexPredator].self, from: data)
                 apexPredators = allApexPredators
             }
-            catch{
+            catch {
                 print("Error decoding JSON data: \(error)")
             }
         }
     }
     
     func search(for searchText: String) -> [ApexPredator] {
-        if searchText.isEmpty {
-            return apexPredators
-        }
-        else {
-            return apexPredators.filter { predator in
-                predator.name.localizedCaseInsensitiveContains(searchText)
-            }
-        }
+        return searchText.isEmpty ? apexPredators : apexPredators.filter { predator in predator.name.localizedCaseInsensitiveContains(searchText) }
     }
     
     func sort(by alphabetical: Bool) {
@@ -47,14 +40,7 @@ class Predators {
         }
     }
     
-    // TODO: Improve logic in filtering.
     func filter(by type: PredatorType) {
-        if type == .all {
-            apexPredators = allApexPredators
-        } else {
-            apexPredators =  allApexPredators.filter { predator in
-                predator.type == type
-            }
-        }
+        apexPredators = type == .all ? allApexPredators :allApexPredators.filter { predator in predator.type == type }
     }
 }
