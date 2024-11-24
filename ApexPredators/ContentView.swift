@@ -16,9 +16,7 @@ struct ContentView: View {
     
     var filteredDinos: [ApexPredator] {
         predators.filter(by: currentSelection)
-        
         predators.sort(by: isAlphabetical)
-        
         return predators.search(for: searchText)
     }
     
@@ -74,7 +72,7 @@ struct ContentView: View {
                         Picker("Filter",selection: $currentSelection.animation()) {
                             ForEach(PredatorType.allCases) {
                                 type in
-                                Label(type.rawValue      .capitalized,
+                                Label(type.rawValue.capitalized,
                                       systemImage:type.icon
                                 )
                             }

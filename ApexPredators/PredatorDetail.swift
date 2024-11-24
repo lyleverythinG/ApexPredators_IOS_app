@@ -73,8 +73,6 @@ struct PredatorDetail: View {
                     }
                     .clipShape(.rect(cornerRadius: 15))
                 }
-                
-                
                 // Appears in
                 Text("Appears In:")
                     .font(.title3)
@@ -99,13 +97,13 @@ struct PredatorDetail: View {
                     Text(scene.sceneDescription)
                         .padding(.bottom, 15)
                 }
-                
                 // Link
-                // TODO: Avoid this force unwrapping behavior. Follow the course then improve code quality once finish.
-                Text("Read More:")
-                    .font(.caption)
-                Link (predator.link, destination: URL(string:predator.link)!)
-                    .foregroundColor(.blue)
+                if let url = URL(string: predator.link), !predator.link.isEmpty {
+                    Text("Read More:")
+                        .font(.caption)
+                    Link (predator.link, destination: url)
+                        .foregroundColor(.blue)
+                }
             }
             .padding()
             .frame(width:geo.size.width,alignment: .leading)
