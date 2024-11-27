@@ -7,7 +7,7 @@ _This IOS app, developed using Swift, is the second app I created in this langua
 - Search Functionality: Search predators by name.
 - Sort Option: Allows sorting the predator list alphabetically or not.
 - Filter Functionality: Filter the predator list by habitat type: Land, Air, or Sea.
-- Map Integration: Added a map using MapKit to display the locations of different predators.
+- Map Integration: Added a map using MapKit and display the different predators based in their location.
 - Map Style Toggle: Switch between satellite and standard map styles.
 - Read More Navigation: Added a Link view, for `read more` option.
 
