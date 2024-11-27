@@ -9,4 +9,4 @@ _This ios app made with Swift is the second app I've created in this language as
 - Can filter list of predators by Land, Air, or Sea.
 - Added a map from `MapKit` which shows the different predators.
 - Added toggle option to switch map style from satellite to standard and vice-versa.
-- Added `Link` for `Read More` option.
+- Added `Link` for `Read More`  navigation option.
