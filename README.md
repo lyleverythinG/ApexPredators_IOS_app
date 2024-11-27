@@ -1,28 +1,43 @@
 # Apex Predator IOS App(Swift)
-_This ios app made with Swift is the second app I've created in this language as I continue my journey in learning ios development._
+_This IOS app, developed using Swift, is the second app I created in this language as I continue my journey in learning IOS development._
 # NOTE
 - I followed a Udemy course, which is this one: https://www.udemy.com/course/ios-15-app-development-with-swiftui-3-and-swift-5/..
 # Functionalities
-- View predator information. (Ex. name, type, movies appeared in, movie scenes.)
-- Search function. (By Name)
-- Option to sort the predators from the list to alphabetical or not. (Based in Name)
-- Can filter list of predators by Land, Air, or Sea.
-- Added a map from `MapKit` which shows the different predators.
-- Added toggle option to switch map style from satellite to standard and vice-versa.
-- Added `Link` for `Read More`  navigation option.
+- View Predator Information: Displays details such as name, type, movies they appeared in, and memorable scenes.
+- Search Functionality: Search predators by name.
+- Sort Option: Allows sorting the predator list alphabetically or not.
+- Filter Functionality: Filter the predator list by habitat type: Land, Air, or Sea.
+- Map Integration: Added a map using MapKit to display the locations of different predators.
+- Map Style Toggle: Switch between satellite and standard map styles.
+- Read More Navigation: Added a Link view, for `read more` option.
 
 # APP UI
-- ![image](https://github.com/user-attachments/assets/ed5b79f3-f60c-4fab-872d-d10352ecf149)
 
-- ![image](https://github.com/user-attachments/assets/7a1a9dd2-f9e4-4669-b7c2-c5e755777720)
+- HOME SCREEN
 
-- ![image](https://github.com/user-attachments/assets/0afba106-1cbf-4161-9703-15dfafbb9d92)
+- ![image](https://github.com/user-attachments/assets/eb27adb2-5caf-4cf2-ac93-b3c075ccb46c)
 
-- ![image](https://github.com/user-attachments/assets/a4b46b5c-0ede-43ad-9aeb-9d920945517d)
+- ![image](https://github.com/user-attachments/assets/27c1f3d1-835a-4196-a67d-e6ba42210d67)
 
-- ![image](https://github.com/user-attachments/assets/39783160-f9cf-4edb-ac34-bee930c424f3)
+- DETAIL SCREEN
 
-- ![image](https://github.com/user-attachments/assets/5268ab68-cb20-4300-9cc5-07ff9afbe95f)
+- ![image](https://github.com/user-attachments/assets/8a5ea86c-0dcb-49a0-9910-7060c2289143)
+
+- ![image](https://github.com/user-attachments/assets/46cfdec9-1563-4ee7-a8c0-97a772035da5)
+
+- MAP SCREEN
+- ![image](https://github.com/user-attachments/assets/9e91f5aa-e7f0-448c-a340-4556d7eb5aa4)
+
+- ![image](https://github.com/user-attachments/assets/3a2eda36-5724-42e5-851e-8b168c20a39f)
+
+- ![image](https://github.com/user-attachments/assets/8ad63042-6871-4253-b4ef-f8256e465c6b)
+
+
+
+
+
+
+
 
 
 
