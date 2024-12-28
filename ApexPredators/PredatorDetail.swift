@@ -33,8 +33,8 @@ struct PredatorDetail: View {
             }
             VStack(alignment: .leading) {
                 // Dino Name
-                Text(predator.name)
-                    .font(.largeTitle)
+                APText.largeTitle(predator.name)
+                
                 // Current Location
                 NavigationLink {
                     PredatorMap(position: .camera(MapCamera(centerCoordinate: predator.location,
@@ -59,7 +59,7 @@ struct PredatorDetail: View {
                             .padding(.trailing, 5)
                     }
                     .overlay(alignment: .topLeading) {
-                        Text("Current Location")
+                        APText.defaultText("Current Location")
                             .padding([.leading, .bottom], 5)
                             .padding(.trailing, 8)
                             .background(.black.opacity(0.33))
@@ -69,33 +69,28 @@ struct PredatorDetail: View {
                     .clipShape(.rect(cornerRadius: 15))
                 }
                 // Appears in
-                Text("Appears In:")
-                    .font(.title3)
+                APText.title3("Appears In:")
                     .padding(.top)
                 
                 ForEach(predator.movies, id: \.self) { movie in
-                    Text("• " + movie)
-                        .font(.subheadline)
-    
+                    APText.subHeadline("• " + movie)
                 }
+                
                 // Movie moments Text
-                Text("Movie Moments")
-                    .font(.title)
+                APText.title("Movie Moments")
                     .padding(.top, 15)
     
                 // Title and description of movies
                 ForEach(predator.movieScenes) { scene in
-                    Text(scene.movie)
-                        .font(.title2)
+                    APText.title2(scene.movie)
                         .padding(.vertical, 1)
                     
-                    Text(scene.sceneDescription)
+                    APText.defaultText(scene.sceneDescription)
                         .padding(.bottom, 15)
                 }
                 // Link
                 if let url = URL(string: predator.link), !predator.link.isEmpty {
-                    Text("Read More:")
-                        .font(.caption)
+                    APText.caption("Read More:")
                     Link (predator.link, destination: url)
                         .foregroundColor(.blue)
                 }

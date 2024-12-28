@@ -26,12 +26,11 @@ struct ContentView: View {
                         
                         VStack(alignment: .leading) {
                             // Name
-                            Text(predator.name)
+                            APText.defaultText(predator.name)
                                 .fontWeight(.bold)
                             
                             // Type
-                            Text(predator.type.rawValue.capitalized)
-                                .font(.subheadline)
+                            APText.subHeadline(predator.type.rawValue.capitalized)
                                 .fontWeight(.semibold)
                                 .padding(.horizontal, 13)
                                 .padding(.vertical, 5)
