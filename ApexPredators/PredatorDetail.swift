@@ -88,11 +88,12 @@ struct PredatorDetail: View {
                     APText.defaultText(scene.sceneDescription)
                         .padding(.bottom, 15)
                 }
+                
                 // Link
                 if let url = URL(string: predator.link), !predator.link.isEmpty {
                     APText.caption("Read More:")
                     Link (predator.link, destination: url)
-                        .foregroundColor(.blue)
+                        .foregroundStyle(.blue)
                 }
             }
             .padding()
