@@ -46,31 +46,39 @@ struct ContentView: View {
             .animation(.default, value: vm.searchText)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    Button {
-                        withAnimation {
-                            vm.isAlphabetical.toggle()
-                        }
-                    } label:  {
-                        Image(systemName: vm.isAlphabetical ? "film" : "textformat")
-                            .symbolEffect(.bounce, value: vm.isAlphabetical)
-                    }
+                    toggleAlphabeticalButton
                 }
                 ToolbarItem(placement: .topBarTrailing) {
-                    Menu {
-                        Picker("Filter",selection: $vm.currentSelection.animation()) {
-                            ForEach(PredatorType.allCases) { type in
-                                Label(type.rawValue.capitalized,
-                                      systemImage:type.icon
-                                )
-                            }
-                        }
-                    } label: {
-                        Image(systemName: "slider.horizontal.3")
-                    }
+                    filterMenu
                 }
             }
         }
         .preferredColorScheme(/*@START_MENU_TOKEN@*/.dark/*@END_MENU_TOKEN@*/)
+    }
+    
+    /// A computed property that provides a button to toggle between alphabetical and default sorting.
+    private var toggleAlphabeticalButton: some View {
+        Button {
+            withAnimation {
+                vm.isAlphabetical.toggle()
+            }
+        } label: {
+            Image(systemName: vm.isAlphabetical ? "film" : "textformat")
+                .symbolEffect(.bounce, value: vm.isAlphabetical)
+        }
+    }
+    
+    /// A computed property that provides a menu for filtering predators by their type.
+    private var filterMenu: some View {
+        Menu {
+            Picker("Filter", selection: $vm.currentSelection.animation()) {
+                ForEach(PredatorType.allCases) { type in
+                    Label(type.rawValue.capitalized, systemImage: type.icon)
+                }
+            }
+        } label: {
+            Image(systemName: "slider.horizontal.3")
+        }
     }
 }
 
