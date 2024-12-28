@@ -6,10 +6,10 @@ _This IOS app, developed using Swift, is the second app I created in this langua
 - View Predator Information: Displays details such as name, type, movies they appeared in, and memorable scenes.
 - Search Functionality: Search predators by name.
 - Sort Option: Allows sorting the predator list alphabetically or not.
-- Filter Functionality: Filter the predator list by habitat type: Land, Air, or Sea.
+- Filter Functionality: Filter the predator list by habitat type: `Land`, `Air`, or `Sea`. Defaults to `all`
 - Map Integration: Added a map using MapKit and display the different predators based in their location.
 - Map Style Toggle: Switch between satellite and standard map styles.
-- Read More Navigation: Added a Link view, for `read more` option.
+- Read More Navigation: Added a Link view, for `read more` functionality.
 
 # APP UI
 
