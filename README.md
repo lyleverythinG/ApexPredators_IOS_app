@@ -21,24 +21,24 @@ _This IOS app, developed using Swift, is the second app I created in this langua
 
 # APP UI
 
-- HOME SCREEN
+ HOME SCREEN
 
-- ![image](https://github.com/user-attachments/assets/eb27adb2-5caf-4cf2-ac93-b3c075ccb46c)
+ ![image](https://github.com/user-attachments/assets/eb27adb2-5caf-4cf2-ac93-b3c075ccb46c)
 
-- ![image](https://github.com/user-attachments/assets/27c1f3d1-835a-4196-a67d-e6ba42210d67)
+ ![image](https://github.com/user-attachments/assets/27c1f3d1-835a-4196-a67d-e6ba42210d67)
 
-- DETAIL SCREEN
+ DETAIL SCREEN
 
-- ![image](https://github.com/user-attachments/assets/8a5ea86c-0dcb-49a0-9910-7060c2289143)
+ ![image](https://github.com/user-attachments/assets/8a5ea86c-0dcb-49a0-9910-7060c2289143)
 
-- ![image](https://github.com/user-attachments/assets/46cfdec9-1563-4ee7-a8c0-97a772035da5)
+ ![image](https://github.com/user-attachments/assets/46cfdec9-1563-4ee7-a8c0-97a772035da5)
 
-- MAP SCREEN
-- ![image](https://github.com/user-attachments/assets/9e91f5aa-e7f0-448c-a340-4556d7eb5aa4)
+ MAP SCREEN
+ ![image](https://github.com/user-attachments/assets/9e91f5aa-e7f0-448c-a340-4556d7eb5aa4)
 
-- ![image](https://github.com/user-attachments/assets/3a2eda36-5724-42e5-851e-8b168c20a39f)
+ ![image](https://github.com/user-attachments/assets/3a2eda36-5724-42e5-851e-8b168c20a39f)
 
-- ![image](https://github.com/user-attachments/assets/8ad63042-6871-4253-b4ef-f8256e465c6b)
+ ![image](https://github.com/user-attachments/assets/8ad63042-6871-4253-b4ef-f8256e465c6b)
 
 
 
