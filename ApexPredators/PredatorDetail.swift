@@ -112,9 +112,3 @@ struct PredatorDetail: View {
     .toolbarBackground(.automatic)
     }
 }
-
-#Preview {
-    PredatorDetail(predator:Predators().apexPredators[2], position:.camera(MapCamera(centerCoordinate: Predators().apexPredators[2].location, distance: 30000)) )
-    .preferredColorScheme(.dark)
-    
-}

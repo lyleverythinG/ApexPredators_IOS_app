@@ -7,14 +7,17 @@
 
 import Foundation
 
+/// An enum representing potential errors that can occur during the JSON decoding process for predators.
 enum JSONDecodeError: Error {
     case fileNotFound
     case decodingFailed(Error)
 }
 
+/// A class responsible for loading and filtering the list of predators.
 class Predators {
+    /// The list of all apex predators as loaded from the JSON file.
     private var allApexPredators: [ApexPredator] = []
-    private(set) var apexPredators: [ApexPredator] = []
+    
     init() {
         do {
             try loadPredators()
@@ -23,6 +26,10 @@ class Predators {
         }
     }
     
+    /// Loads predators data from a JSON file in the app bundle.
+    ///
+    /// - Throws: `JSONDecodeError.fileNotFound` if the file cannot be located.
+    ///           `JSONDecodeError.decodingFailed` if the decoding process fails.
     private func loadPredators() throws {
         guard let url = Bundle.main.url(forResource: "jpapexpredators", withExtension: "json") else {
             throw JSONDecodeError.fileNotFound
@@ -32,22 +39,16 @@ class Predators {
             let decoder = JSONDecoder()
             decoder.keyDecodingStrategy = .convertFromSnakeCase
             allApexPredators = try decoder.decode([ApexPredator].self, from: data)
-            apexPredators = allApexPredators
+            //            apexPredators = allApexPredators
         } catch {
             throw JSONDecodeError.decodingFailed(error)
         }
     }
     
-    func search(for searchText: String) -> [ApexPredator] {
-        return searchText.isEmpty ? apexPredators : apexPredators.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
-    }
-    
-    func sort(by alphabetical: Bool) -> [ApexPredator] {
-        return apexPredators.sorted {
-            alphabetical ? $0.name < $1.name : $0.id < $1.id
-        }
-    }
-    
+    /// Filters the predators list by their type (e.g., land, air, sea, all).
+    ///
+    /// - Parameter type: The type of predator to filter by.
+    /// - Returns: A list of predators that match the specified type.
     func filter(by type: PredatorType) -> [ApexPredator] {
         return type == .all ? allApexPredators :allApexPredators.filter { $0.type == type }
     }
