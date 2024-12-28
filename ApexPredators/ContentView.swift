@@ -9,40 +9,28 @@ import SwiftUI
 import MapKit
 
 struct ContentView: View {
-    let predators = Predators()
-    @State var searchText = ""
-    @State var isAlphabetical = false
-    @State var currentSelection = PredatorType.all
-    
-    var filteredDinos: [ApexPredator] {
-        predators.filter(by: currentSelection)
-        predators.sort(by: isAlphabetical)
-        return predators.search(for: searchText)
-    }
+    @StateObject private var vm = PredatorsViewModel()
     
     var body: some View {
         NavigationStack {
-            List(filteredDinos) { predator in
+            List(vm.filteredPredators) { predator in
                 NavigationLink {
                     PredatorDetail(predator: predator,
                                    position: .camera(MapCamera(centerCoordinate: predator.location, distance: 30000)))
                 } label: {
                     HStack {
                         //Dinosaur Image
-                        Image(predator.image)
-                            .resizable()
-                            .scaledToFit()
+                        ReusableScaledToFitImg(predatorImg:predator.image)
                             .frame(width: 100,height:100)
                             .shadow(color: .white , radius: 1)
                         
                         VStack(alignment: .leading) {
                             // Name
-                            Text(predator.name)
+                            APText.defaultText(predator.name)
                                 .fontWeight(.bold)
                             
                             // Type
-                            Text(predator.type.rawValue.capitalized)
-                                .font(.subheadline)
+                            APText.subHeadline(predator.type.rawValue.capitalized)
                                 .fontWeight(.semibold)
                                 .padding(.horizontal, 13)
                                 .padding(.vertical, 5)
@@ -53,36 +41,44 @@ struct ContentView: View {
                 }
             }
             .navigationTitle("Apex Predators")
-            .searchable(text: $searchText)
+            .searchable(text: $vm.searchText)
             .autocorrectionDisabled()
-            .animation(.default, value: searchText)
+            .animation(.default, value: vm.searchText)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    Button {
-                        withAnimation {
-                            isAlphabetical.toggle()
-                        }
-                    } label:  {
-                        Image(systemName: isAlphabetical ? "film" : "textformat")
-                            .symbolEffect(.bounce, value: isAlphabetical)
-                    }
+                    toggleAlphabeticalButton
                 }
                 ToolbarItem(placement: .topBarTrailing) {
-                    Menu {
-                        Picker("Filter",selection: $currentSelection.animation()) {
-                            ForEach(PredatorType.allCases) { type in
-                                Label(type.rawValue.capitalized,
-                                      systemImage:type.icon
-                                )
-                            }
-                        }
-                    } label: {
-                        Image(systemName: "slider.horizontal.3")
-                    }
+                    filterMenu
                 }
             }
         }
         .preferredColorScheme(/*@START_MENU_TOKEN@*/.dark/*@END_MENU_TOKEN@*/)
+    }
+    
+    /// A computed property that provides a button to toggle between alphabetical and default sorting.
+    private var toggleAlphabeticalButton: some View {
+        Button {
+            withAnimation {
+                vm.isAlphabetical.toggle()
+            }
+        } label: {
+            Image(systemName: vm.isAlphabetical ? "film" : "textformat")
+                .symbolEffect(.bounce, value: vm.isAlphabetical)
+        }
+    }
+    
+    /// A computed property that provides a menu for filtering predators by their type.
+    private var filterMenu: some View {
+        Menu {
+            Picker("Filter", selection: $vm.currentSelection.animation()) {
+                ForEach(PredatorType.allCases) { type in
+                    Label(type.rawValue.capitalized, systemImage: type.icon)
+                }
+            }
+        } label: {
+            Image(systemName: "slider.horizontal.3")
+        }
     }
 }
 

@@ -7,40 +7,49 @@
 
 import Foundation
 
+/// An enum representing potential errors that can occur during the JSON decoding process for predators.
+enum JSONDecodeError: Error {
+    case fileNotFound
+    case decodingFailed(Error)
+}
+
+/// A class responsible for loading and filtering the list of predators.
 class Predators {
-    var allApexPredators: [ApexPredator] = []
-    var apexPredators: [ApexPredator] = []
+    /// The list of all apex predators as loaded from the JSON file.
+    private var allApexPredators: [ApexPredator] = []
+    
     init() {
-        decodeApexPredatorData()
-    }
-    
-    func decodeApexPredatorData() {
-        if let url = Bundle.main.url(forResource: "jpapexpredators", withExtension: "json") {
-            do {
-                let data = try Data(contentsOf: url)
-                let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-                allApexPredators = try decoder.decode([ApexPredator].self, from: data)
-                apexPredators = allApexPredators
-            }
-            catch {
-                print("Error decoding JSON data: \(error)")
-            }
+        do {
+            try loadPredators()
+        } catch {
+            print("Error loading predators: \(error)")
         }
     }
     
-    func search(for searchText: String) -> [ApexPredator] {
-        return searchText.isEmpty ? apexPredators : apexPredators.filter { predator in predator.name.localizedCaseInsensitiveContains(searchText) }
-    }
-    
-    func sort(by alphabetical: Bool) {
-        apexPredators.sort {
-            predator1, predator2 in
-            alphabetical ? predator1.name < predator2.name : predator1.id < predator2.id
+    /// Loads predators data from a JSON file in the app bundle.
+    ///
+    /// - Throws: `JSONDecodeError.fileNotFound` if the file cannot be located.
+    ///           `JSONDecodeError.decodingFailed` if the decoding process fails.
+    private func loadPredators() throws {
+        guard let url = Bundle.main.url(forResource: "jpapexpredators", withExtension: "json") else {
+            throw JSONDecodeError.fileNotFound
+        }
+        do {
+            let data = try Data(contentsOf: url)
+            let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            allApexPredators = try decoder.decode([ApexPredator].self, from: data)
+            //            apexPredators = allApexPredators
+        } catch {
+            throw JSONDecodeError.decodingFailed(error)
         }
     }
     
-    func filter(by type: PredatorType) {
-        apexPredators = type == .all ? allApexPredators :allApexPredators.filter { predator in predator.type == type }
+    /// Filters the predators list by their type (e.g., land, air, sea, all).
+    ///
+    /// - Parameter type: The type of predator to filter by.
+    /// - Returns: A list of predators that match the specified type.
+    func filter(by type: PredatorType) -> [ApexPredator] {
+        return type == .all ? allApexPredators :allApexPredators.filter { $0.type == type }
     }
 }
