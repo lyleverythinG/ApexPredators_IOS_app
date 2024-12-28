@@ -11,9 +11,59 @@ import MapKit
 struct PredatorDetail: View {
     let predator: ApexPredator
     @State var position: MapCameraPosition
+    
     var body: some View {
-               GeometryReader { geo in
-        ScrollView {
+        GeometryReader { geo in
+            ScrollView {
+                // Background Img
+                BackgroundDetailImg(geo:geo, predator: predator)
+                
+                VStack(alignment: .leading) {
+                    // Dino Name
+                    APText.largeTitle(predator.name)
+                    
+                    // Current Location / Mini-map Section
+                    MapSection(geo: geo, predator: predator, position: $position)
+                    
+                    // Appears in Section
+                    APText.title3("Appears In:")
+                        .padding(.top)
+                    ForEach(predator.movies, id: \.self) { movie in
+                        APText.subHeadline("• " + movie)
+                    }
+                    
+                    // Movie Moments Section
+                    APText.title("Movie Moments")
+                        .padding(.top, 15)
+                    
+                    // Title and description of movies
+                    ForEach(predator.movieScenes) { scene in
+                        APText.title2(scene.movie)
+                            .padding(.vertical, 1)
+                        APText.defaultText(scene.sceneDescription)
+                            .padding(.bottom, 15)
+                    }
+                    
+                    // Read More Link
+                    if let url = URL(string: predator.link), !predator.link.isEmpty {
+                        APText.caption("Read More:")
+                        Link (predator.link, destination: url)
+                            .foregroundStyle(.blue)
+                    }
+                }
+                .padding()
+                .frame(width:geo.size.width,alignment: .leading)
+            }
+            .ignoresSafeArea()
+        }
+        .toolbarBackground(.automatic)
+    }
+    
+    private struct BackgroundDetailImg: View {
+        let geo: GeometryProxy
+        let predator: ApexPredator
+        
+        var body: some View {
             ZStack(alignment: .bottomTrailing)  {
                 // Background Image
                 ReusableImage(predatorImg: predator.type.rawValue)
@@ -31,76 +81,47 @@ struct PredatorDetail: View {
                     .shadow(color: .black,radius: 7)
                     .offset(y:20)
             }
-            VStack(alignment: .leading) {
-                // Dino Name
-                APText.largeTitle(predator.name)
-                
-                // Current Location
-                NavigationLink {
-                    PredatorMap(position: .camera(MapCamera(centerCoordinate: predator.location,
-                                                            distance: 1000,
-                                                            heading: 250,
-                                                            pitch: 80)))
-                } label: {
-                    Map(position: $position) {
-                        Annotation(predator.name, coordinate: predator.location) {
-                            Image(systemName: "mappin.and.ellipse")
-                                .font(.largeTitle)
-                                .imageScale(.large)
-                                .symbolEffect(.pulse)
-                        }
-                        .annotationTitles(.hidden)
-                    }
-                    .frame(height: 125)
-                    .overlay(alignment:.trailing) {
-                        Image(systemName: "greaterthan")
-                            .imageScale(.large)
-                            .font(.title3)
-                            .padding(.trailing, 5)
-                    }
-                    .overlay(alignment: .topLeading) {
-                        APText.defaultText("Current Location")
-                            .padding([.leading, .bottom], 5)
-                            .padding(.trailing, 8)
-                            .background(.black.opacity(0.33))
-                            .clipShape(.rect(bottomTrailingRadius: 15))
-                        
-                    }
-                    .clipShape(.rect(cornerRadius: 15))
-                }
-                // Appears in
-                APText.title3("Appears In:")
-                    .padding(.top)
-                
-                ForEach(predator.movies, id: \.self) { movie in
-                    APText.subHeadline("• " + movie)
-                }
-                
-                // Movie moments Text
-                APText.title("Movie Moments")
-                    .padding(.top, 15)
-    
-                // Title and description of movies
-                ForEach(predator.movieScenes) { scene in
-                    APText.title2(scene.movie)
-                        .padding(.vertical, 1)
-                    
-                    APText.defaultText(scene.sceneDescription)
-                        .padding(.bottom, 15)
-                }
-                
-                // Link
-                if let url = URL(string: predator.link), !predator.link.isEmpty {
-                    APText.caption("Read More:")
-                    Link (predator.link, destination: url)
-                        .foregroundStyle(.blue)
-                }
-            }
-            .padding()
-            .frame(width:geo.size.width,alignment: .leading)
         }
-        .ignoresSafeArea()
     }
-    .toolbarBackground(.automatic)
+    
+    private struct MapSection: View {
+        let geo: GeometryProxy
+        let predator: ApexPredator
+        @Binding var position: MapCameraPosition
+        
+        var body: some View {
+            NavigationLink {
+                PredatorMap(position: .camera(MapCamera(centerCoordinate: predator.location,
+                                                        distance: 1000,
+                                                        heading: 250,
+                                                        pitch: 80)))
+            } label: {
+                Map(position: $position) {
+                    Annotation(predator.name, coordinate: predator.location) {
+                        Image(systemName: "mappin.and.ellipse")
+                            .font(.largeTitle)
+                            .imageScale(.large)
+                            .symbolEffect(.pulse)
+                    }
+                    .annotationTitles(.hidden)
+                }
+                .frame(height: 125)
+                .overlay(alignment:.trailing) {
+                    Image(systemName: "greaterthan")
+                        .imageScale(.large)
+                        .font(.title3)
+                        .padding(.trailing, 5)
+                }
+                .overlay(alignment: .topLeading) {
+                    APText.defaultText("Current Location")
+                        .padding([.leading, .bottom], 5)
+                        .padding(.trailing, 8)
+                        .background(.black.opacity(0.33))
+                        .clipShape(.rect(bottomTrailingRadius: 15))
+                    
+                }
+                .clipShape(.rect(cornerRadius: 15))
+            }
+        }
     }
 }
