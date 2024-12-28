@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ReusableImage: View {
+struct ReusableScaledToFitImg: View {
     let predatorImg: String
     
     var body: some View {
@@ -18,5 +18,5 @@ struct ReusableImage: View {
 }
 
 #Preview {
-    ReusableImage(predatorImg: "indoraptor")
+    ReusableScaledToFitImg(predatorImg: "indoraptor")
 }
