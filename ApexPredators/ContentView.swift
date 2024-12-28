@@ -20,9 +20,7 @@ struct ContentView: View {
                 } label: {
                     HStack {
                         //Dinosaur Image
-                        Image(predator.image)
-                            .resizable()
-                            .scaledToFit()
+                        ReusableImage(predatorImg:predator.image)
                             .frame(width: 100,height:100)
                             .shadow(color: .white , radius: 1)
                         

@@ -17,9 +17,7 @@ struct PredatorMap: View {
         Map(position: $position) {
             ForEach(vm.filteredPredators) { predator in
                 Annotation(predator.name, coordinate: predator.location) {
-                    Image(predator.image)
-                        .resizable()
-                        .scaledToFit()
+                    ReusableImage(predatorImg: predator.image)
                         .frame(height: 100)
                         .shadow(color: .white, radius: 3)
                         .scaleEffect(x: -1)

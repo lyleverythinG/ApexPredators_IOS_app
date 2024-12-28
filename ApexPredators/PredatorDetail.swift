@@ -16,9 +16,7 @@ struct PredatorDetail: View {
         ScrollView {
             ZStack(alignment: .bottomTrailing)  {
                 // Background Image
-                Image(predator.type.rawValue)
-                    .resizable()
-                    .scaledToFit()
+                ReusableImage(predatorImg: predator.type.rawValue)
                     .overlay {
                         LinearGradient (stops: [
                             Gradient.Stop(color: .clear, location:0.8),
@@ -27,9 +25,7 @@ struct PredatorDetail: View {
                     }
                 
                 // Dino Image
-                Image(predator.image)
-                    .resizable()
-                    .scaledToFit()
+                ReusableImage(predatorImg: predator.image)
                     .frame(width:geo.size.width/1.5,height:geo.size.height/3)
                     .scaleEffect(x:-1)
                     .shadow(color: .black,radius: 7)
