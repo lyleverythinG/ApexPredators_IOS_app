@@ -18,12 +18,16 @@ final class PredatorsViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     
     init() {
-        // Automatically update filteredPredators when searchText, isAlphabetical, or currentSelection changes
+        // Update filteredPredators whenever searchText, isAlphabetical, or currentSelection changes.
         Publishers.CombineLatest3($searchText, $isAlphabetical, $currentSelection)
-            .sink { [weak self] searchText, isAlphabetical, currentSelection in
-                self?.updateFilteredPredators(searchText: searchText, isAlphabetical: isAlphabetical, type: currentSelection)
+            .sink { [weak self] in
+                self?.handleChanges(searchText: $0, isAlphabetical: $1, type: $2)
             }
             .store(in: &cancellables)
+    }
+    
+    private func handleChanges(searchText: String, isAlphabetical: Bool, type: PredatorType) {
+        updateFilteredPredators(searchText: searchText, isAlphabetical: isAlphabetical, type: type)
     }
     
     private func updateFilteredPredators(searchText: String, isAlphabetical: Bool, type: PredatorType) {
