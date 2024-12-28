@@ -9,20 +9,11 @@ import SwiftUI
 import MapKit
 
 struct ContentView: View {
-    let predators = Predators()
-    @State var searchText = ""
-    @State var isAlphabetical = false
-    @State var currentSelection = PredatorType.all
-    
-    var filteredDinos: [ApexPredator] {
-        predators.filter(by: currentSelection)
-        predators.sort(by: isAlphabetical)
-        return predators.search(for: searchText)
-    }
+    @StateObject private var vm = PredatorsViewModel()
     
     var body: some View {
         NavigationStack {
-            List(filteredDinos) { predator in
+            List(vm.filteredPredators) { predator in
                 NavigationLink {
                     PredatorDetail(predator: predator,
                                    position: .camera(MapCamera(centerCoordinate: predator.location, distance: 30000)))
@@ -53,23 +44,23 @@ struct ContentView: View {
                 }
             }
             .navigationTitle("Apex Predators")
-            .searchable(text: $searchText)
+            .searchable(text: $vm.searchText)
             .autocorrectionDisabled()
-            .animation(.default, value: searchText)
+            .animation(.default, value: vm.searchText)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button {
                         withAnimation {
-                            isAlphabetical.toggle()
+                            vm.isAlphabetical.toggle()
                         }
                     } label:  {
-                        Image(systemName: isAlphabetical ? "film" : "textformat")
-                            .symbolEffect(.bounce, value: isAlphabetical)
+                        Image(systemName: vm.isAlphabetical ? "film" : "textformat")
+                            .symbolEffect(.bounce, value: vm.isAlphabetical)
                     }
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Menu {
-                        Picker("Filter",selection: $currentSelection.animation()) {
+                        Picker("Filter",selection: $vm.currentSelection.animation()) {
                             ForEach(PredatorType.allCases) { type in
                                 Label(type.rawValue.capitalized,
                                       systemImage:type.icon

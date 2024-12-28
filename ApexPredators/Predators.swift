@@ -7,40 +7,48 @@
 
 import Foundation
 
+enum JSONDecodeError: Error {
+    case fileNotFound
+    case decodingFailed(Error)
+}
+
 class Predators {
-    var allApexPredators: [ApexPredator] = []
-    var apexPredators: [ApexPredator] = []
+    private var allApexPredators: [ApexPredator] = []
+    private(set) var apexPredators: [ApexPredator] = []
     init() {
-        decodeApexPredatorData()
+        do {
+            try loadPredators()
+        } catch {
+            print("Error loading predators: \(error)")
+        }
     }
     
-    func decodeApexPredatorData() {
-        if let url = Bundle.main.url(forResource: "jpapexpredators", withExtension: "json") {
-            do {
-                let data = try Data(contentsOf: url)
-                let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-                allApexPredators = try decoder.decode([ApexPredator].self, from: data)
-                apexPredators = allApexPredators
-            }
-            catch {
-                print("Error decoding JSON data: \(error)")
-            }
+    private func loadPredators() throws {
+        guard let url = Bundle.main.url(forResource: "jpapexpredators", withExtension: "json") else {
+            throw JSONDecodeError.fileNotFound
+        }
+        do {
+            let data = try Data(contentsOf: url)
+            let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            allApexPredators = try decoder.decode([ApexPredator].self, from: data)
+            apexPredators = allApexPredators
+        } catch {
+            throw JSONDecodeError.decodingFailed(error)
         }
     }
     
     func search(for searchText: String) -> [ApexPredator] {
-        return searchText.isEmpty ? apexPredators : apexPredators.filter { predator in predator.name.localizedCaseInsensitiveContains(searchText) }
+        return searchText.isEmpty ? apexPredators : apexPredators.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
     }
     
-    func sort(by alphabetical: Bool) {
-        apexPredators.sort {
-            predator1, predator2 in
-            alphabetical ? predator1.name < predator2.name : predator1.id < predator2.id
+    func sort(by alphabetical: Bool) -> [ApexPredator] {
+        return apexPredators.sorted {
+            alphabetical ? $0.name < $1.name : $0.id < $1.id
         }
     }
     
-    func filter(by type: PredatorType) {
-        apexPredators = type == .all ? allApexPredators :allApexPredators.filter { predator in predator.type == type }
+    func filter(by type: PredatorType) -> [ApexPredator] {
+        return type == .all ? allApexPredators :allApexPredators.filter { $0.type == type }
     }
 }
