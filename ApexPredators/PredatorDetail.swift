@@ -13,58 +13,58 @@ struct PredatorDetail: View {
     @State var position: MapCameraPosition
     
     var body: some View {
-            NavigationLink {
-                FullScreenPredatorView(predator: predator)
-            } label: {
-                GeometryReader { geo in
-                    ScrollView {
-                            // Background Img
-                            BackgroundDetailImg(geo:geo, predator: predator)
-                            
-                            VStack(alignment: .leading) {
-                                // Dino Name
-                                APText.largeTitle(predator.name)
-                                
-                                // Current Location / Mini-map Section
-                                MapSection(geo: geo, predator: predator, position: $position)
-                                
-                                // Appears in Section
-                                APText.title3("Appears In:")
-                                    .padding(.top)
-                                ForEach(predator.movies, id: \.self) { movie in
-                                    APText.subHeadline("• " + movie)
-                                }
-                                
-                                // Movie Moments Section
-                                APText.title("Movie Moments")
-                                    .padding(.top, 15)
-                                
-                                // Title and description of movies
-                                ForEach(predator.movieScenes) { scene in
-                                    APText.title2(scene.movie)
-                                        .padding(.vertical, 1)
-                                    APText.defaultText(scene.sceneDescription)
-                                        .padding(.bottom, 15)
-                                }
-                                
-                                // Read More Link
-                                if let url = URL(string: predator.link), !predator.link.isEmpty {
-                                    APText.caption("Read More:")
-                                    HStack {
-                                        Link (predator.link, destination: url)
-                                            .foregroundStyle(.blue)
-                                    }
-                                    .frame(maxWidth: .infinity, alignment: .center)
-                                    .padding(.bottom, 10)
-                                }
+        NavigationLink {
+            FullScreenPredatorView(predator: predator)
+        } label: {
+            GeometryReader { geo in
+                ScrollView {
+                    // Background Img
+                    BackgroundDetailImg(geo:geo, predator: predator)
+                    
+                    VStack(alignment: .leading) {
+                        // Dino Name
+                        APText.largeTitle(predator.name)
+                        
+                        // Current Location / Mini-map Section
+                        MapSection(geo: geo, predator: predator, position: $position)
+                        
+                        // Appears in Section
+                        APText.title3("Appears In:")
+                            .padding(.top)
+                        ForEach(predator.movies, id: \.self) { movie in
+                            APText.subHeadline("• " + movie)
+                        }
+                        
+                        // Movie Moments Section
+                        APText.title("Movie Moments")
+                            .padding(.top, 15)
+                        
+                        // Title and description of movies
+                        ForEach(predator.movieScenes) { scene in
+                            APText.title2(scene.movie)
+                                .padding(.vertical, 1)
+                            APText.defaultText(scene.sceneDescription)
+                                .padding(.bottom, 15)
+                        }
+                        
+                        // Read More Link
+                        if let url = URL(string: predator.link), !predator.link.isEmpty {
+                            APText.caption("Read More:")
+                            HStack {
+                                Link (predator.link, destination: url)
+                                    .foregroundStyle(.blue)
                             }
-                            .padding()
-                            .frame(width:geo.size.width,alignment: .leading)
+                            .frame(maxWidth: .infinity, alignment: .center)
+                            .padding(.bottom, 10)
+                        }
                     }
-                    .ignoresSafeArea()
+                    .padding()
+                    .frame(width:geo.size.width,alignment: .leading)
                 }
-                .toolbarBackground(.automatic)
+                .ignoresSafeArea()
             }
+            .toolbarBackground(.automatic)
+        }
     }
     
     private struct FullScreenPredatorView: View {

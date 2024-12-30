@@ -18,6 +18,7 @@ final class PredatorsViewModel: ObservableObject {
     
     private let predatorsModel = Predators()
     private var cancellables = Set<AnyCancellable>()
+    private var deletedPredators: Set<Int> = []
     
     init() {
         // Update filteredPredators whenever searchText, isAlphabetical, or currentSelection changes.
@@ -34,6 +35,26 @@ final class PredatorsViewModel: ObservableObject {
         updateFilteredPredators(searchText: searchText, isAlphabetical: isAlphabetical, type: type)
     }
     
+    /// Deletes a predator from the `filteredPredators` list and tracks the deletion.
+    ///
+    /// - This function removes the specified predator(s) from the `filteredPredators` array based on the provided `IndexSet` of offsets.
+    /// - The ID of each deleted predator is stored in the `deletedPredators` set, which helps track the deleted items without modifying the original predator list.
+    /// - The purpose of tracking deleted predators in the `deletedPredators` set is to ensure they do not reappear when the list is filtered or sorted again.
+    ///
+    /// - Parameters:
+    ///   - offsets: A set of indices representing the positions of the predators to be deleted from the `filteredPredators` list.
+    ///
+    /// - Note: This function only affects the `filteredPredators` list and ensures that the deletion is consistent across updates like sorting or filtering.
+    func handleDeletionOfPredator(at offsets: IndexSet) {
+        for index in offsets {
+            let predator = filteredPredators[index]
+            deletedPredators.insert(predator.id)
+        }
+        
+        // Removes the selected predator based from its offsets.
+        filteredPredators.remove(atOffsets: offsets)
+    }
+    
     /// Applies filtering, sorting, and searching to the predators list based on the current state.
     ///
     /// - Parameters:
@@ -45,10 +66,27 @@ final class PredatorsViewModel: ObservableObject {
     ///       - `.air`: Filters for air-based predators.
     ///       - `.sea`: Filters for sea-based predators.
     private func updateFilteredPredators(searchText: String, isAlphabetical: Bool, type: PredatorType) {
-        // Filter and sort based on the current state
-        let filtered = predatorsModel.filter(by: type)
-        let sorted = isAlphabetical ? filtered.sorted { $0.name < $1.name } : filtered
+        var filteredList = predatorsModel.allApexPredators
         
-        filteredPredators = searchText.isEmpty ? sorted : sorted.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
+        // Apply filter by type
+        if type != .all {
+            filteredList = filteredList.filter { $0.type == type }
+        }
+        
+        // Apply search filtering
+        if !searchText.isEmpty {
+            filteredList = filteredList.filter { $0.name.lowercased().contains(searchText.lowercased()) }
+        }
+        
+        // Exclude deleted predators
+        filteredList = filteredList.filter { !deletedPredators.contains($0.id) }
+        
+        // Apply sorting if necessary
+        if isAlphabetical {
+            filteredList.sort { $0.name.lowercased() < $1.name.lowercased() }
+        }
+        
+        // Update the filteredPredators list
+        filteredPredators = filteredList
     }
 }
