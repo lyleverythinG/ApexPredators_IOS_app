@@ -10,7 +10,7 @@ import SwiftUI
 import MapKit
 
 /// Represents an apex predator with properties such as id, name, type, latitude, longitude, movies, movieScenes, and link.
-struct ApexPredator : Decodable, Identifiable {
+struct ApexPredator : Decodable, Identifiable, Equatable {
     let id: Int
     let name: String
     let type: PredatorType
@@ -31,7 +31,7 @@ struct ApexPredator : Decodable, Identifiable {
     }
     
     /// Represents a specific scene in a movie.
-    struct MovieScene : Decodable, Identifiable {
+    struct MovieScene : Decodable, Identifiable, Equatable {
         let id: Int
         let movie: String
         let sceneDescription: String
