@@ -3,12 +3,18 @@ _This IOS app, developed using Swift, is the second app I created in this langua
 # NOTE
 - I followed a Udemy course, which is this one: https://www.udemy.com/course/ios-15-app-development-with-swiftui-3-and-swift-5/.
 - After I finished this app from the course, I made changes to the project for practice and learning purposes. (Can be found in main or in `feature/add-code-adjustments-and-improvements` branch)
+- Added changes related to the coding challenges for this section from the course.
 
-# My Changes
+# Changes (Personal)
 - Added view model named `PredatorsViewModel` and transfer applicable code areas to the view model.
 - Added descriptive comments to `classes`, `enums`, `functions`, and etc.
 - Extracted sub views. (Ex. `ReusableScaledToFitImg`).
 - Standardized Text. (`APText`)
+# Changes (Coding Challenges from Course)
+- Added a navigation when a predator is tapped from the details screen. (Redirects to a view that shows the predator in full screen.)
+- Added an info card when the user taps the predator from the map.
+- Added deletion of predator functionality from the list.
+- Add filtering by movie. <- Not yet implemented. Will implement it soon.
   
 # Functionalities
 - View Predator Information: Displays details such as name, type, movies they appeared in, and memorable scenes.
