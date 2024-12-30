@@ -13,10 +13,10 @@ enum JSONDecodeError: Error {
     case decodingFailed(Error)
 }
 
-/// A class responsible for loading and filtering the list of predators.
+/// A class responsible for loading the list of predators.
 class Predators {
     /// The list of all apex predators as loaded from the JSON file.
-    private var allApexPredators: [ApexPredator] = []
+    private(set) var allApexPredators: [ApexPredator] = []
     
     init() {
         do {
@@ -43,13 +43,5 @@ class Predators {
         } catch {
             throw JSONDecodeError.decodingFailed(error)
         }
-    }
-    
-    /// Filters the predators list by their type (e.g., land, air, sea, all).
-    ///
-    /// - Parameter type: The type of predator to filter by.
-    /// - Returns: A list of predators that match the specified type.
-    func filter(by type: PredatorType) -> [ApexPredator] {
-        return type == .all ? allApexPredators :allApexPredators.filter { $0.type == type }
     }
 }

@@ -10,6 +10,7 @@
 		26A0DD4D2D1FA7FD0019F409 /* PredatorsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A0DD4C2D1FA7FD0019F409 /* PredatorsViewModel.swift */; };
 		26A0DD532D1FD0710019F409 /* ReusableScaledToFitImg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A0DD522D1FD0710019F409 /* ReusableScaledToFitImg.swift */; };
 		26A0DD552D1FD1F70019F409 /* APText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A0DD542D1FD1F70019F409 /* APText.swift */; };
+		26B484DA2D22400000C9EE39 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B484D92D22400000C9EE39 /* LocationService.swift */; };
 		F7031ECC2CF04C8800B1E790 /* PredatorDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7031ECB2CF04C8800B1E790 /* PredatorDetail.swift */; };
 		F74731D42CF31BB0005E4545 /* PredatorMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74731D32CF31BB0005E4545 /* PredatorMap.swift */; };
 		F749CE8B2CF3604C003D3465 /* Stickers.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F749CE8A2CF3604C003D3465 /* Stickers.xcassets */; };
@@ -51,6 +52,7 @@
 		26A0DD4C2D1FA7FD0019F409 /* PredatorsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredatorsViewModel.swift; sourceTree = "<group>"; };
 		26A0DD522D1FD0710019F409 /* ReusableScaledToFitImg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableScaledToFitImg.swift; sourceTree = "<group>"; };
 		26A0DD542D1FD1F70019F409 /* APText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APText.swift; sourceTree = "<group>"; };
+		26B484D92D22400000C9EE39 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		F7031ECB2CF04C8800B1E790 /* PredatorDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredatorDetail.swift; sourceTree = "<group>"; };
 		F74731D32CF31BB0005E4545 /* PredatorMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredatorMap.swift; sourceTree = "<group>"; };
 		F749CE882CF3604B003D3465 /* ApexStickers.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ApexStickers.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,6 +116,7 @@
 				F7E7D0D82CE60DE80067082C /* Predators.swift */,
 				F7031ECB2CF04C8800B1E790 /* PredatorDetail.swift */,
 				F74731D32CF31BB0005E4545 /* PredatorMap.swift */,
+				26B484D92D22400000C9EE39 /* LocationService.swift */,
 				26A0DD542D1FD1F70019F409 /* APText.swift */,
 				26A0DD522D1FD0710019F409 /* ReusableScaledToFitImg.swift */,
 				F7E7D0D42CE609E30067082C /* jpapexpredators.json */,
@@ -233,6 +236,7 @@
 			files = (
 				F7E7D0D72CE60B910067082C /* ApexPredator.swift in Sources */,
 				F74731D42CF31BB0005E4545 /* PredatorMap.swift in Sources */,
+				26B484DA2D22400000C9EE39 /* LocationService.swift in Sources */,
 				F7E7D0C92CE608E50067082C /* ContentView.swift in Sources */,
 				F7031ECC2CF04C8800B1E790 /* PredatorDetail.swift in Sources */,
 				26A0DD552D1FD1F70019F409 /* APText.swift in Sources */,
